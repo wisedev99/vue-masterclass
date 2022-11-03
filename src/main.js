@@ -3,6 +3,7 @@ import App from './App.vue'
 import Home from '@/pages/Home'
 import ThreadShow from '@/pages/ThreadShow'
 import NotFound from '@/pages/NotFound'
+import Forum from '@/pages/Forum'
 import { createRouter, createWebHistory } from 'vue-router'
 import sourceData from './data.json'
 const routes = [
@@ -10,6 +11,12 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/forum/:id',
+    name: 'Forum',
+    component: Forum,
+    props: true
   },
   {
     path: '/thread/show:id',
@@ -46,4 +53,19 @@ const router = createRouter({
 
 const forumApp = createApp(App)
 forumApp.use(router)
+
+const requireComponent = require.context(
+  './components',
+  true,
+  /App[A-Z]\w+\.(vue|js)$/
+)
+requireComponent.keys().forEach(function (fileName) {
+  let baseComponentConfig = requireComponent(fileName)
+  baseComponentConfig = baseComponentConfig.default || baseComponentConfig
+  const baseComponentName =
+    baseComponentConfig.name ||
+    fileName.replace(/^.+\//, '').replace(/\.\w+$/, '')
+  forumApp.component(baseComponentName, baseComponentConfig)
+})
+
 forumApp.mount('#app')
