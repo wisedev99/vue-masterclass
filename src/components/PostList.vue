@@ -24,19 +24,23 @@
       </div>
 
       <div class="post-date text-faded">
-        {{ post.publishedAt }}
+        <AppDate :timestamp="post.publishedAt" />
       </div>
     </div>
   </div>
 </template>
 <script>
 import sourceData from '@/data.json'
+import AppDate from '@/components/AppDate'
 export default {
   props: {
     posts: {
       type: Object,
       required: true
     }
+  },
+  components: {
+    AppDate
   },
   data () {
     return {

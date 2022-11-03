@@ -14,8 +14,7 @@
             </p>
             <p class="text-faded text-xsmall">
               By <a href="#">{{ userById(thread.userId).name }}</a
-              >,
-              <AppDate :timestamp="thread.publishedAt" />.
+              >, <AppDate :timestamp="thread.publishedAt" />.
             </p>
           </div>
 
@@ -48,6 +47,7 @@
 
 <script>
 import sourceData from '@/data.json'
+import AppDate from '@/components/AppDate'
 export default {
   name: 'ThreadList',
   props: {
@@ -55,6 +55,9 @@ export default {
       type: Array,
       required: true
     }
+  },
+  components: {
+    AppDate
   },
   data () {
     return {
