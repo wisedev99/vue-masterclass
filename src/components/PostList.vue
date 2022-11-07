@@ -18,7 +18,7 @@
       <div class="post-content">
         <div>
           <p>
-            {{ post.text }}
+            {{ post.title }}
           </p>
         </div>
       </div>

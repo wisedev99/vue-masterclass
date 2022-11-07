@@ -1,7 +1,7 @@
 <template>
   <div class="col-large push-top">
     <h1>{{ thread.title }}</h1>
-    <post-list :posts="threadPosts" />
+    <post-list :posts="threads" />
 
     <post-editor @save="addPost" />
   </div>
@@ -39,8 +39,7 @@ export default {
         ...eventData.post,
         threadId: this.id
       }
-      this.posts.push(post)
-      this.thread.posts.push(post.id)
+      this.$store.dispatch('createPost', post)
     }
   }
 }
