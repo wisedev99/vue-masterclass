@@ -5,6 +5,7 @@ import Category from '@/pages/Category'
 import { createRouter, createWebHistory } from 'vue-router'
 import sourceData from '@/data.json'
 import Home from '@/pages/Home'
+import Profile from '@/pages/Profile'
 
 const routes = [
   {
@@ -22,6 +23,11 @@ const routes = [
     name: 'Forum',
     component: Forum,
     props: true
+  },
+  {
+    path: '/me',
+    name: 'Profile',
+    component: Profile
   },
   {
     path: '/thread/:id',
