@@ -1,17 +1,17 @@
 <template>
-  <ForumList :forums="forums" />
+  <h1>Welcome to the Forum</h1>
+  <CategoryList :categories="categories" />
 </template>
 
 <script>
-import sourceData from '@/data.json'
-import ForumList from '@/components/ForumList.vue'
+import CategoryList from '@/components/CategoryList'
 export default {
   components: {
-    ForumList
+    CategoryList
   },
-  data () {
-    return {
-      forums: sourceData.forums
+  computed: {
+    categories () {
+      return this.$store.state.categories
     }
   }
 }
